@@ -44,5 +44,6 @@ After installing `<where/to/install>` should minimally contain:
 - The CMake packaging files:
   - `lib/cmake/CMakePublicConfig.cmake`
 
+
 Additional files (such a build type specific config file) may also be present
 depending on the exact configuration command you (or your IDE) use.
