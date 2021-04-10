@@ -38,11 +38,11 @@ where:
 
 After installing `<where/to/install>` should minimally contain:
 
-- The actual library `lib/libCMakePublic.a`
+- The actual library `lib/cmakepublic/libCMakePublic.a`
   - The extension and name will vary from operating system to operating system
-- The header file `include/cmake_public.hpp`
+- The header file `include/cmakepublic/cmake_public.hpp`
 - The CMake packaging files:
-  - `lib/cmake/CMakePublicConfig.cmake`
+  - `lib/cmakepublic/cmake/CMakePublicConfig.cmake`
 
 Additional files (such a build type specific config file) may also be present
 depending on the exact configuration command you (or your IDE) use.
