@@ -1,0 +1,39 @@
+name: Lint
+
+on:
+  #push:
+  #  branches: [ master ]
+  pull_request: # Workflow will run on pull requests against master
+    branches: [ master ]
+
+jobs:
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Git Checkout CMakePublic
+        uses: actions/checkout@v2
+
+      # Install cmake-lang dependency
+      - name: Install cmake-lang
+        run: pip install cmakelang
+          
+      # Run cmake-format command
+      - name: CMake-Formatting
+        run:  cmake-format
+      
+      # Installing cmake
+      #- name: Build CMake
+      #  run: |
+      #    mkdir build
+      #    cd build
+      #    cmake ..
+      #    
+      ## Running the Make Command on CMakePublic
+      #- name: Make Project
+      #  run: |
+      #    cd build
+      #    cmake ..
+      #    make
