@@ -1,30 +1,22 @@
 cmake_minimum_required(VERSION 3.13.4)
 project(CMakePublic VERSION 1.0.0 LANGUAGES CXX)
 
-
-add_library(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/src/cmake_public.cpp)
-
 include(GNUInstallDirs)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/cmake_public.hpp
+# Add src directory to build libraries
+add_subdirectory(src)
+
+# Create *Config.cmake file for the project, including all components
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in
+    ${PROJECT_NAME}Config.cmake
+    @ONLY
 )
 
-target_include_directories(${PROJECT_NAME} PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/>
-  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-)
+# Install the *Config.cmake file
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}/cmake)
 
-install(TARGETS ${PROJECT_NAME}
-    EXPORT ${PROJECT_NAME}-targets
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/cmakepublic
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmakepublic
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmakepublic
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}/cmakepublic
-)
-
-install(EXPORT ${PROJECT_NAME}-targets
-    NAMESPACE ${PROJECT_NAME}::
-    FILE ${PROJECT_NAME}Config.cmake
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmakepublic/cmake
-)
+# Include CTest in the top-most CMakeLists.txt and add the project tests
+include(CTest)
+add_subdirectory(test)
