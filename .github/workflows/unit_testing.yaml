@@ -22,9 +22,6 @@ jobs:
       uses: lukka/get-cmake@latest
       with:
         cmakeVersion: latestrc
-        useLocalCache: true         # <--= Use the local cache (default is 'false').
-        useCloudCache: false        # <--= Ditch the cloud cache (default is 'true').
-
 
     - name: Configure CMake
       run: >
