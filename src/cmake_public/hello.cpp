@@ -1,4 +1,4 @@
-#include "cmake_public/cmake_public.hpp"
+#include "cmake_public/hello.hpp"
 
 namespace cmake_public {
 

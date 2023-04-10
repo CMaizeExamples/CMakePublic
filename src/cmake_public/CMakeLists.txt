@@ -15,7 +15,7 @@ target_sources(
 target_include_directories(
     ${component_name}
     PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include/>
+        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
@@ -36,7 +36,7 @@ install(
 
 # Install the include directory
 install(
-    DIRECTORY "${CMAKE_SOURCE_DIR}/include/"
+    DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
     USE_SOURCE_PERMISSIONS
 )
@@ -67,7 +67,7 @@ target_sources(
 target_include_directories(
     ${component_name}
     PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include/>
+        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
@@ -88,7 +88,7 @@ install(
 
 # Install the include directory
 install(
-    DIRECTORY "${CMAKE_SOURCE_DIR}/include/"
+    DIRECTORY "${PROJECT_SOURCE_DIR}/include/"
     DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
     USE_SOURCE_PERMISSIONS
 )
